@@ -8,18 +8,25 @@ import net.gedzis.blogeriunaujienos.model.WebSite;
 public class MainData {
 	private List<WebSite> websites = new ArrayList<WebSite>();
 
-	public MainData() {
-		super();
-		addSites();
+	private static MainData instance = null;
+
+	protected MainData() {
+		// Exists only to defeat instantiation.
 	}
 
-	private void addSites() {
+	public static MainData getInstance() {
+		if (instance == null) {
+			instance = new MainData();
+		}
+		return instance;
+	}
+
+	private void loadSites() {
 		WebSite website = new WebSite(
 				"Gedzis Blog'as",
 				"Asmeninis Gedimino Ubarto tinklaraštis apie programavimą, studentišką gyvenimą",
 				"http://feeds.feedburner.com/GedzisBlogas?format=xml");
 		websites.add(website);
-
 		website = new WebSite(
 				"SkaitykIT",
 				"Tai yra tinklaraštis, skirtas apžvelgti interneto naujienoms, pateikti lankytojams įvairias naudingas nuorodas, duoti patarimus programuotojams ir tinklapių kūrėjams bei apžvelgti tam tikrų nišų tinklapius Lietuvoje ir pasaulyje.",
@@ -45,6 +52,7 @@ public class MainData {
 	}
 
 	public List<WebSite> getWebsites() {
+		loadSites();
 		return websites;
 	}
 

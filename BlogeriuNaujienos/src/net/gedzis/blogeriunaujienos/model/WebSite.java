@@ -1,8 +1,13 @@
 package net.gedzis.blogeriunaujienos.model;
 
 public class WebSite {
+	/** Tinklapio pavadinimas. */
 	private String title;
+	
+	/** Tinklaio apibūdinimas */
 	private String description;
+
+	/** Tinklapio RSS srauto adresas */
 	private String feedURL;
 
 	public WebSite(String title, String description, String feedURL) {
