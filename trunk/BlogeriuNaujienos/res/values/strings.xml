@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, BlogeriuNaujienos!</string>
-    <string name="app_name">Blogeriu naujienos</string>
+	<string name="hello">Hello World, BlogeriuNaujienos!</string>
+	<string name="app_name">Blogeriu naujienos</string>
+	<string name="tab_dialog_feed_tab">RSS naujienos</string>
+	<string name="tab_dialog_about_tab">Apie</string>
+
 </resources>

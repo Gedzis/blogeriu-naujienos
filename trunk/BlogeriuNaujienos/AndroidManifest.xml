@@ -13,6 +13,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+		<activity android:name="net.gedzis.blogeriunaujienos.FeedListTab" />
+		<activity android:name="net.gedzis.blogeriunaujienos.AboutTab"></activity>
+		<activity android:name="net.gedzis.blogeriunaujienos.WebsiteTabActivity"
+			android:theme="@android:style/Theme.NoTitleBar"></activity>
     </application>
 </manifest>
