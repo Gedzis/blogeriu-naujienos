@@ -78,6 +78,7 @@ public class BaseFeedParser {
 				new EndTextElementListener() {
 					public void end(String body) {
 						currentMessage.setDate(body);
+
 					}
 				});
 		try {

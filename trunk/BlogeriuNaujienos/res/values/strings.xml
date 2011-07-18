@@ -10,6 +10,7 @@
 	<string name="error_no_internet_connection">Programai reikalinga interneto prieiga</string>
 	<string name="dialog_loading__dialog_message">Palaukite. Naujienos ikeliamos...</string>
 	<string name="dialog_loading_dialog_title">Įkeliama...</string>
-
+	
+	<string name="article_view_read_all">Skaityti visą straipsnį</string>
 
 </resources>
