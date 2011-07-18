@@ -1,5 +1,13 @@
 package net.gedzis.blogeriunaujienos.rss;
 
+import static net.gedzis.blogeriunaujienos.common.Constants.CHANNEL;
+import static net.gedzis.blogeriunaujienos.common.Constants.DESCRIPTION;
+import static net.gedzis.blogeriunaujienos.common.Constants.ITEM;
+import static net.gedzis.blogeriunaujienos.common.Constants.LINK;
+import static net.gedzis.blogeriunaujienos.common.Constants.PUB_DATE;
+import static net.gedzis.blogeriunaujienos.common.Constants.RSS;
+import static net.gedzis.blogeriunaujienos.common.Constants.TITLE;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -15,17 +23,6 @@ import android.sax.RootElement;
 import android.util.Xml;
 
 public class BaseFeedParser {
-
-	// names of the XML tags
-	static final String RSS = "rss";
-	static final String CHANNEL = "channel";
-	static final String ITEM = "item";
-
-	static final String PUB_DATE = "pubDate";
-	static final String DESCRIPTION = "description";
-	static final String LINK = "link";
-	static final String TITLE = "title";
-	static final String CONTENT = "title"; // nenaudojamas
 
 	private final URL feedUrl;
 
@@ -46,38 +43,38 @@ public class BaseFeedParser {
 	}
 
 	public List<FeedItem> parse() {
-		final FeedItem currentMessage = new FeedItem();
+		final FeedItem currentFeed = new FeedItem();
 		RootElement root = new RootElement(RSS);
-		final List<FeedItem> messages = new ArrayList<FeedItem>();
+		final List<FeedItem> feed = new ArrayList<FeedItem>();
 		Element itemlist = root.getChild(CHANNEL);
 		Element item = itemlist.getChild(ITEM);
 		item.setEndElementListener(new EndElementListener() {
 			public void end() {
-				messages.add(currentMessage.copy());
+				feed.add(currentFeed.copy());
 			}
 		});
 		item.getChild(TITLE).setEndTextElementListener(
 				new EndTextElementListener() {
 					public void end(String body) {
-						currentMessage.setTitle(body);
+						currentFeed.setTitle(body);
 					}
 				});
 		item.getChild(LINK).setEndTextElementListener(
 				new EndTextElementListener() {
 					public void end(String body) {
-						currentMessage.setLink(body);
+						currentFeed.setLink(body);
 					}
 				});
-		item.getChild(DESCRIPTION).setEndTextElementListener(
+		item.requireChild(DESCRIPTION).setEndTextElementListener(
 				new EndTextElementListener() {
 					public void end(String body) {
-						currentMessage.setDescription(body);
+						currentFeed.setDescription(body);
 					}
 				});
 		item.getChild(PUB_DATE).setEndTextElementListener(
 				new EndTextElementListener() {
 					public void end(String body) {
-						currentMessage.setDate(body);
+						currentFeed.setDate(body);
 
 					}
 				});
@@ -87,6 +84,6 @@ public class BaseFeedParser {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		return messages;
+		return feed;
 	}
 }
