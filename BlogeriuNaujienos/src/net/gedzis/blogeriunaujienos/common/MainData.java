@@ -6,7 +6,7 @@ import java.util.List;
 import net.gedzis.blogeriunaujienos.model.WebSite;
 
 public class MainData {
-	private List<WebSite> websites = new ArrayList<WebSite>();
+	private static List<WebSite> websites = new ArrayList<WebSite>();
 
 	private static MainData instance = null;
 
@@ -17,11 +17,12 @@ public class MainData {
 	public static MainData getInstance() {
 		if (instance == null) {
 			instance = new MainData();
+			loadSites();
 		}
 		return instance;
 	}
 
-	private void loadSites() {
+	private static void loadSites() {
 		WebSite website = new WebSite(
 				"Gedzis Blog'as",
 				"Asmeninis Gedimino Ubarto tinklaraštis apie programavimą, studentišką gyvenimą",
@@ -52,7 +53,6 @@ public class MainData {
 	}
 
 	public List<WebSite> getWebsites() {
-		loadSites();
 		return websites;
 	}
 
