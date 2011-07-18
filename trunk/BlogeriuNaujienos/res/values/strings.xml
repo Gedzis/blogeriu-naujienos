@@ -4,5 +4,12 @@
 	<string name="app_name">Blogeriu naujienos</string>
 	<string name="tab_dialog_feed_tab">RSS naujienos</string>
 	<string name="tab_dialog_about_tab">Apie</string>
+	<string name="no_feeds">Nėra naujienų</string>
+
+	<string name="alert_dialog_title">Klaida</string>
+	<string name="error_no_internet_connection">Programai reikalinga interneto prieiga</string>
+	<string name="dialog_loading__dialog_message">Palaukite. Naujienos ikeliamos...</string>
+	<string name="dialog_loading_dialog_title">Įkeliama...</string>
+
 
 </resources>
