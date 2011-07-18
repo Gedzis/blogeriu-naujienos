@@ -52,7 +52,7 @@ public class FeedListTab extends ListActivity implements Runnable {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-		Intent i = new Intent(this, ActicleViewActivity.class);
+		Intent i = new Intent(this, ArticleViewActivity.class);
 		i.putExtra(FEED_CONTENT, messages.get(position).getDescription());
 		i.putExtra(FEED_URL, messages.get(position).getLink().toString());
 		i.putExtra(FEED_TITLE, messages.get(position).getTitle());
