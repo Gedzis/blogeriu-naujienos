@@ -49,6 +49,13 @@ public class MainData {
 				"Tinklaraštis apie interneto naujienas, technologijas, asmeninį produktyvumą. Įrangos apžvalgos ir kasdieninė įdomiausių radinių lietuviškoje blogosferoje.",
 				"http://feeds.feedburner.com/nezinau?format=xml");
 		websites.add(website);
+		
+		website = new WebSite(
+				"BasketNews",
+				"Kasis",
+				"http://feeds.feedburner.com/basketnewslt?format=xml");
+		websites.add(website);
+		
 
 	}
 
