@@ -8,6 +8,7 @@ import static net.gedzis.blogeriunaujienos.common.Constants.SELECTED_ITEM;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.gedzis.blogeriunaujienos.common.BaseActions;
 import net.gedzis.blogeriunaujienos.common.MainData;
 import net.gedzis.blogeriunaujienos.model.FeedItem;
 import net.gedzis.blogeriunaujienos.model.WebSite;
@@ -33,10 +34,12 @@ public class FeedListTab extends ListActivity implements Runnable {
 	private WebSite currentWebsite;
 	private ProgressDialog pd;
 	private List<String> titles;
+	private BaseActions baseActions;
 	public MainData data;
 
 	@Override
 	public void onCreate(Bundle icicle) {
+		baseActions = new BaseActions();
 		super.onCreate(icicle);
 		setContentView(R.layout.feed_items);
 		Bundle extras = getIntent().getExtras();
@@ -60,16 +63,8 @@ public class FeedListTab extends ListActivity implements Runnable {
 	}
 
 	private void loadFeed() {
-		if (!isNetworkAvailable()) {
-			new AlertDialog.Builder(this).setMessage(
-					R.string.error_no_internet_connection).setTitle(
-					R.string.alert_dialog_title).setCancelable(true)
-					.setNeutralButton(android.R.string.cancel,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int whichButton) {
-								}
-							}).show();
+		if (!baseActions.isNetworkAvailable(this)) {
+			baseActions.showNoInternetAllertBox(this);
 		} else {
 			pd = ProgressDialog.show(this, this
 					.getString(R.string.dialog_loading_dialog_title), this
@@ -79,13 +74,6 @@ public class FeedListTab extends ListActivity implements Runnable {
 			thread.start();
 
 		}
-	}
-
-	public boolean isNetworkAvailable() {
-		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo activeNetworkInfo = connectivityManager
-				.getActiveNetworkInfo();
-		return activeNetworkInfo != null;
 	}
 
 	public void displayList() {
