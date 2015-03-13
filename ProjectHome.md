@@ -1,0 +1,1 @@
+Application for Android, which allows to fetch RSS from website
